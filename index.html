@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Document</title>
+    
+</head>
+<body>
+    <!--h1>Login page</h1-->
+    <div>
+            <label>Target</label>
+            <input type="text" id="target">
+            <br/>
+            <label>No. of elements</label>
+            <input type="text" id="elements">
+            <br/>
+            <label>Array</label>
+            <input type="text" id="array">
+            <br/>
+            <input type="button"  onclick="validate()" value="Submit">
+            <input type="text" id="result" disabled />
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function validate(){
+        var count = 0;
+        var target=$("#target").val();
+        var elements=$("#elements").val();
+        var array=$("#array").val().split(',');
+        array = sort(array, elements);
+        for(var i=0;i<elements-1;i++){
+	       for(var j=i+1;j<elements;j++){
+	           if(array[j]-array[i] == target)
+	            count++;
+	       }
+	   }
+       $("#result").val(count);
+    }
+    function sort(arr, n){
+        var i, j, min;
+        for(i=0;i<n;i++){
+            min = i;
+            for(j=i+1;j<n;j++){
+                if(arr[j]<arr[min])
+                    min = j;
+            }
+            j=arr[i];
+            arr[i] = arr[min];
+            arr[min] = j;
+        }
+        return arr;
+    }
+</script>
